@@ -11,6 +11,7 @@ html {
     --mediaWide: '1800px';
     --darkGrey: #252934;
     --darkerGrey: #616161;
+    --lightGrey: #f5f5f5;
 }
 
 html, body {
@@ -20,6 +21,10 @@ html, body {
     font-family: 'Raleway', sans-serif;
 }
 
+h1, h2, h3 {
+    margin-top: 0;
+}
+
 h1 {
     font-size: 1.75rem;
     font-weight: 700;
@@ -27,6 +32,11 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.25rem;
     font-weight: 600;
 }
 
@@ -41,6 +51,9 @@ p {
     }
     h2 {
         font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.5rem;
     }
     p {
         font-size: 1.1rem;
