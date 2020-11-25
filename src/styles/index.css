@@ -5,19 +5,15 @@
 }
 
 html {
-    --mediaLgPhone: '600px';
-    --mediaTablet: '768px';
-    --mediaLaptop: '1400px';
-    --mediaWide: '1800px';
-    --darkGrey: #252934;
-    --darkerGrey: #616161;
-    --lightGrey: #f5f5f5;
+    --dark-grey: #252934;
+    --darker-grey: #616161;
+    --light-grey: #f5f5f5;
 }
 
 html, body {
     margin: 0;
     height: 100%;
-    color: var(--darkGrey);
+    color: var(--dark-grey);
     font-family: 'Raleway', sans-serif;
 }
 
