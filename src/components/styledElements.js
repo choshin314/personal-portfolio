@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const media = {
     lgPhone: '600px',
     tablet: '768px',
+    lgTablet: '1024px',
     laptop: '1400px',
     wide: '1800px'
 }
@@ -46,7 +47,7 @@ export const SectionTitle = styled.h2`
         bottom: -10px;
         height: 4px;
         border-radius: 2px;
-        background-color: var(--darkGrey);
+        background-color: var(--navy);
         transform: translateX(-50%);
     }
 `
