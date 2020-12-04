@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 import {PaddedSection, SectionTitle, media} from '../styledElements'
 
-const About = () => {
+const AboutSection = () => {
     const data = useStaticQuery(graphql`
         query {
             contentfulAsset(title: {eq: "Profile Pic"}) {
@@ -33,9 +33,12 @@ const About = () => {
                     <ImgFrame>
                         <Img fluid={data.contentfulAsset.fluid} alt="Shin Cho's mug"/>
                     </ImgFrame>
-                    <h3>Why hello there!</h3>
+                    <h3>Hello there :)</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda doloribus dolorem velit labore rerum odio quaerat hic ipsam quibusdam praesentium! Aspernatur dolorem accusamus officia eos quidem, veniam cum minima reiciendis.
+                        I'm Shin.  I am an attorney-turned-web developer with a passion for making things for the web.    
+                    </p>
+                    <p>
+                        I strive to build apps and websites not just with an emphasis on beautiful and responsive designs, but also on performance and functionality. 
                     </p>
                 </div>
                 <div className="skills">
@@ -54,7 +57,7 @@ const About = () => {
     )
 }
 
-export default About;
+export default AboutSection;
 
 const Flex = styled.div`
     display: grid;
@@ -67,6 +70,10 @@ const Flex = styled.div`
     }
     .personal-details {
         margin-right: 1rem;
+        p {
+            max-width: 400px;
+            margin: 0 auto 1rem auto;
+        }
     }
     .skills {
         margin-left: 1rem;
