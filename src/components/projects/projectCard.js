@@ -128,8 +128,11 @@ const ImgWrapper = styled.div`
         height: 100%;
         width: 100%;
         background-color: var(--navy);
-        opacity: .6;
+        opacity: .8;
         transition: opacity .3s ease-in;
+        @media(min-width: ${media.tablet}) {
+            opacity: .6;
+        }
     }
     ${CardWrapper}.open & .gatsby-image-wrapper::after {
         opacity: 0;
