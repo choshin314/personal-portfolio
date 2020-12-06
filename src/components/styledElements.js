@@ -9,8 +9,9 @@ export const media = {
     wide: '1800px'
 }
 
-export const PaddedSection = ({bgColor="white", padding="3rem", children}) => (
-    <Section bgColor={bgColor} padding={padding}>
+export const PaddedSection = ({bgColor="white", clippedBgColor, children}) => (
+    <Section bgColor={bgColor} padding={clippedBgColor ? "0 0 3rem 0" : "3rem 0"}>
+        {clippedBgColor && <SectionClippedBorder bgColor={clippedBgColor}></SectionClippedBorder>}
         <Wrapper>
             {children}
         </Wrapper>
@@ -26,8 +27,19 @@ export const Wrapper = styled.div`
 
 export const Section = styled.section`
     background-color: ${props => props.bgColor};
-    padding: ${props => props.padding} 0;
+    padding: ${props => props.padding};
 `
+
+export const SectionClippedBorder = styled.div`
+    background: ${props => props.bgColor};
+    height: 25px;
+    clip-path: polygon(100% 0, 50% 100%, 0 0);
+    margin-bottom: 3rem;
+    @media(min-width: ${media.tablet}){
+        height: 50px;
+    }
+`
+
 
 export const Flex = styled.div`
     display: flex;
