@@ -18,6 +18,7 @@ export const PaddedSection = ({id, bgColor="white", clippedBgColor, children}) =
     </Section>
 )
 
+
 export const Wrapper = styled.div`
     width: 90%;
     max-width: 1200px;
@@ -62,5 +63,36 @@ export const SectionTitle = styled.h2`
         border-radius: 2px;
         background-color: ${props => props.color ? props.color : 'var(--navy)'};
         transform: translateX(-50%);
+    }
+`
+export const Button = styled.button`
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: ${props => props.color ? props.color : "white"};
+    padding: 1rem;
+    background: transparent;
+    border: white solid 2px;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    span {
+        position: relative;
+        z-index: 1;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        opacity: 0;
+        transition: opacity .2s ease-in;
+        z-index: 0;
+    }
+    &:hover::before {
+        opacity: .3;
     }
 `
