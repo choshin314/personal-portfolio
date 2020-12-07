@@ -9,8 +9,8 @@ export const media = {
     wide: '1800px'
 }
 
-export const PaddedSection = ({bgColor="white", clippedBgColor, children}) => (
-    <Section bgColor={bgColor} padding={clippedBgColor ? "0 0 3rem 0" : "3rem 0"}>
+export const PaddedSection = ({id, bgColor="white", clippedBgColor, children}) => (
+    <Section id={id} bgColor={bgColor} padding={clippedBgColor ? "0 0 3rem 0" : "3rem 0"}>
         {clippedBgColor && <SectionClippedBorder bgColor={clippedBgColor}></SectionClippedBorder>}
         <Wrapper>
             {children}
@@ -50,6 +50,7 @@ export const SectionTitle = styled.h2`
     font-weight: 700;
     position: relative;
     margin-bottom: 3rem;
+    color: ${props => props.color ? props.color : 'var(--navy)'};
 
     &::after {
         content: '';
@@ -59,7 +60,7 @@ export const SectionTitle = styled.h2`
         bottom: -10px;
         height: 4px;
         border-radius: 2px;
-        background-color: var(--navy);
+        background-color: ${props => props.color ? props.color : 'var(--navy)'};
         transform: translateX(-50%);
     }
 `
