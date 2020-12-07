@@ -25,8 +25,9 @@ const AboutSection = () => {
             }
         }
     `)
+
     return (
-        <PaddedSection>
+        <PaddedSection id="about-section">
             <SectionTitle>ABOUT ME</SectionTitle>
             <Flex>
                 <div className="personal-details">
@@ -45,7 +46,7 @@ const AboutSection = () => {
                     <h3>Skills / Proficiencies</h3>
                     <ul>
                         {data.contentfulSkillSet.skills.map(skill => (
-                            <li>
+                            <li key={skill.name}>
                                 {skill.name}
                                 <img src={skill.logo.file.url} alt={skill.name} />
                             </li>
