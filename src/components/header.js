@@ -4,6 +4,7 @@ import {window, document} from 'browser-monads'
 
 import Particles from './particles'
 import Navbar from './nav/navbar'
+import NavMobile from './nav/navMobile'
 import {Wrapper} from './styledElements'
 
 function Header() {
@@ -36,6 +37,7 @@ function Header() {
                 <p>I build web apps and websites.</p>
               </Content>
             </Wrapper>
+            <NavMobile />
             <Navbar pinned={navPinned}/>
         </StyledHeader>
     )
