@@ -18,6 +18,7 @@ const ProjectsSection = () => {
                     descriptionLong {
                         raw
                     }
+                    tools
                     demoUrl
                     repoUrl
                     repoUrl2
@@ -32,6 +33,8 @@ const ProjectsSection = () => {
                         }
                     }
                     modalImages {
+                        title
+                        description
                         fluid {
                             ...GatsbyContentfulFluid_withWebp
                         }

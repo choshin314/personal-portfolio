@@ -1,18 +1,67 @@
 import React, {useContext} from 'react'
 import styled, {keyframes} from 'styled-components'
-import Img from 'gatsby-image'
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSquare, faWindowClose} from '@fortawesome/free-regular-svg-icons'
+import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons'
+import {faGithub} from '@fortawesome/free-brands-svg-icons'
 
 import {ModalContext} from '../../context/modalContext'
+import ImgSlider from './imgSlider.js'
 
 const ProjectModal = () => {
-    const {currentProject, modalOpen} = useContext(ModalContext);
+    const {currentProject, setCurrentProject, modalOpen, setModalOpen} = useContext(ModalContext);
     const richTextDescription = JSON.parse(currentProject.descriptionLong.raw);
+    function closeModal(e) {
+        const id = e.target.id;
+        console.log(e.target);
+        if(id === "modal-bg" || e.target.closest("#modal-exit-btn") ) {
+            setModalOpen(false);
+            setTimeout(() => setCurrentProject(null), 0)
+        }
+    }
 
     return (
-        <ModalBg className={modalOpen && currentProject ? "modal-open" : ""}>
-            {/* {documentToReactComponents(richTextDescription)} */}
-        </ModalBg>
+        <div id="modal-root" onClick={closeModal}>
+            <ModalBg id="modal-bg" className={modalOpen && currentProject ? "modal-open" : ""}></ModalBg>
+            <ModalContainer>
+                <ExitBtn id="modal-exit-btn" aria-label="close modal"><FontAwesomeIcon icon={faWindowClose}/></ExitBtn>
+                <ImgSlider images={currentProject.modalImages} />
+                <ContentDiv>
+                    {documentToReactComponents(richTextDescription)}
+                    <h2>Built with:</h2>
+                    <ul>
+                        {currentProject.tools.map(tool => (
+                            <li key={tool}>
+                                <FontAwesomeIcon icon={faSquare} className="fa-fw"/>
+                                <span>{tool}</span> 
+                            </li>
+                        ))}
+                    </ul>
+                    <h2>Check it out:</h2>
+                    <ul>
+                        <li>
+                            <a href={currentProject.demoUrl} target="blank">
+                                <FontAwesomeIcon icon={faExternalLinkAlt} className="fa-fw" />
+                                <span>Live Demo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href={currentProject.repoUrl} target="blank">
+                                <FontAwesomeIcon icon={faGithub} className="fa-fw" />
+                                <span>{!currentProject.repoUrl2 ? "Github Repo" : "Github Repo - Frontend"}</span>
+                            </a>
+                        </li>
+                        {currentProject.repoUrl2 && <li>
+                            <a href={currentProject.repoUrl2} target="blank">
+                                <FontAwesomeIcon icon={faGithub} className="fa-fw" />
+                                <span>Github Repo - Backend</span>
+                            </a>
+                        </li>}
+                    </ul>
+                </ContentDiv>
+            </ModalContainer>
+        </div>
     )
 }
 
@@ -21,13 +70,17 @@ export default ProjectModal;
 const ModalBg = styled.div`
     position: fixed;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     width: 100vw;
     background: var(--navy);
     opacity: 0;
     transition: opacity .3s ease-out;
     display: none;
+    z-index: 100;
     &.modal-open {
         display: block;
         opacity: .5;
@@ -58,67 +111,67 @@ const ModalContainer = styled.div`
     z-index: 120;
     overflow-y: auto;
 `
-const StyledImg = styled(Img)`
-    max-height: 300px;
-`
 const ContentDiv = styled.div`
     display: flex;
     flex-direction: column;
+    border-top: 3px solid var(--navy);
     padding: 1rem 1.5rem;
-
-    div.heading {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        h2, span {
-            font-size: 1.2rem;
-        }
+    p, ul {
+        margin-top: 0;
     }
-    div.description {
-        margin-bottom: 2rem;
-    }
-`
-const AddToOrder = styled.button`
-    position: relative;
-    background-color: var(--primary);
-    color: white;
-    font-family: 'Manrope', 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        opacity: 0;
-        transition: opacity .3s ease-out;
-    }
-    &:active::after, &:hover::after {
-        opacity: 1;
-    }
-    &[disabled] {
-        background-color: grey;
-        &:active::after, &:hover::after {
-            opacity: 0;
+    ul {
+        list-style: none;
+        padding-left: 0;
+        li {
+            width: 100%;
+            display: flex;
+            margin-bottom: 5px;
+            svg {
+                flex-shrink: 0;
+            }
+            span {
+                margin-left: 1rem;
+            }
+            a {
+                text-decoration: none;
+                font-weight: 500;
+                color: var(--light-navy);
+                position: relative;
+            }
+            a > span {
+                position: relative;
+            }
+            a > span::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                background: var(--light-navy);
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform .2s ease-in;
+            }
+            a:hover > span::after, a:focus > span::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
         }
     }
 `
 
-const Exit = styled.button`
+const ExitBtn = styled.button`
     font-size: 1.5rem;
     position: absolute;
-    top: .5rem;
-    right: .5rem;
-    background: rgba(0,0,0,.5);
+    top: 10px;
+    right: 10px;
     border: none;
-    color: var(--primary);
+    color: var(--navy);
+    background: transparent;
     cursor: pointer;
+    z-index: 10;
+    &:hover {
+        color: var(--accent);
+    }
 `

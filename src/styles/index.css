@@ -59,3 +59,25 @@ p {
         font-size: 1.1rem;
     }
 }
+
+/*-----Scrollbar-----*/
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+    background: var(--light-grey);
+    border-radius: 5px;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background: var(--navy);
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--light-navy);
+}
