@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -6,11 +6,19 @@ import {faExternalLinkAlt, faInfoCircle } from '@fortawesome/free-solid-svg-icon
 import {faGithub} from '@fortawesome/free-brands-svg-icons'
 
 import {media} from '../styledElements'
+import {ModalContext} from '../../context/modalContext'
 
 const ProjectCard = ({project}) => {
     const [cardOpen, setCardOpen] = useState(false);
+    const {setModalOpen, setCurrentProject} = useContext(ModalContext);
+
     function toggleCardOpen(e) {
         setCardOpen(prev => !prev)
+    }
+
+    function selectProject() {
+        setCurrentProject(project);
+        setModalOpen(true);
     }
 
     return (
@@ -48,7 +56,7 @@ const ProjectCard = ({project}) => {
                         </a>
                     </Tab>}
                     <Tab>
-                        <button>
+                        <button onClick={selectProject}>
                             More Info 
                             <FontAwesomeIcon icon={faInfoCircle} />
                         </button>
