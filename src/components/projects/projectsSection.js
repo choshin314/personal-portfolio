@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
+import {CSSTransition} from 'react-transition-group'
 
 import {PaddedSection, SectionTitle, media} from '../styledElements'
 import ProjectCard from './projectCard'
@@ -52,7 +53,14 @@ const ProjectsSection = () => {
                 {projects.map(project => <ProjectCard project={project} key={project.name}/>)}
             </Flex>
         </PaddedSection>
-        {modalOpen && currentProject && <ProjectModal />}
+        <CSSTransition
+            in={modalOpen && currentProject}
+            timeout={300}
+            classNames="modal"
+            unmountOnExit
+        >
+            <ProjectModal />
+        </CSSTransition>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import styled, {keyframes} from 'styled-components'
+import styled from 'styled-components'
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faSquare, faWindowClose} from '@fortawesome/free-regular-svg-icons'
@@ -10,20 +10,19 @@ import {ModalContext} from '../../context/modalContext'
 import ImgSlider from './imgSlider.js'
 
 const ProjectModal = () => {
-    const {currentProject, setCurrentProject, modalOpen, setModalOpen} = useContext(ModalContext);
+    const {currentProject, setModalOpen} = useContext(ModalContext);
     const richTextDescription = JSON.parse(currentProject.descriptionLong.raw);
     function closeModal(e) {
         const id = e.target.id;
         console.log(e.target);
         if(id === "modal-bg" || e.target.closest("#modal-exit-btn") ) {
             setModalOpen(false);
-            setTimeout(() => setCurrentProject(null), 0)
         }
     }
 
     return (
-        <div id="modal-root" onClick={closeModal}>
-            <ModalBg id="modal-bg" className={modalOpen && currentProject ? "modal-open" : ""}></ModalBg>
+        <ModalRoot id="modal-root" onClick={closeModal}>
+            <ModalBg id="modal-bg" ></ModalBg>
             <ModalContainer>
                 <ExitBtn id="modal-exit-btn" aria-label="close modal"><FontAwesomeIcon icon={faWindowClose}/></ExitBtn>
                 <ImgSlider images={currentProject.modalImages} />
@@ -61,11 +60,14 @@ const ProjectModal = () => {
                     </ul>
                 </ContentDiv>
             </ModalContainer>
-        </div>
+        </ModalRoot>
     )
 }
 
 export default ProjectModal;
+
+const ModalRoot = styled.div`
+`
 
 const ModalBg = styled.div`
     position: fixed;
@@ -77,22 +79,21 @@ const ModalBg = styled.div`
     height: 100%;
     width: 100vw;
     background: var(--navy);
-    opacity: 0;
-    transition: opacity .3s ease-out;
-    display: none;
+    opacity: .5;
     z-index: 100;
-    &.modal-open {
-        display: block;
+    ${ModalRoot}.modal-enter & {
+        opacity: 0;
+    }
+    ${ModalRoot}.modal-enter-active & {
+        opacity: .5;
+        transition: opacity .3s ease-out;
+    }
+    ${ModalRoot}.modal-exit & {
         opacity: .5;
     }
-`
-
-const slideUp = keyframes`
-    from {
-        transform: translate(-50%, 100%);
-    }
-    to {
-        transform: translate(-50%, -50%);
+    ${ModalRoot}.modal-exit-active & {
+        opacity: 0;
+        transition: opacity .3s ease-in;
     }
 `
 
@@ -107,9 +108,26 @@ const ModalContainer = styled.div`
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 5px;
     transform: translate(-50%, -50%);
-    animation: ${slideUp} .2s linear;
     z-index: 120;
     overflow-y: auto;
+    ${ModalRoot}.modal-enter & {
+        opacity: 0;
+        transform: translate(-50%, -100%);
+    }
+    ${ModalRoot}.modal-enter-active & {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        transition: opacity .3s ease-out, transform .3s ease-out;
+    }
+    ${ModalRoot}.modal-exit & {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    ${ModalRoot}.modal-exit-active & {
+        opacity: 0;
+        transform: translate(-50%, 100%);
+        transition: opacity .3s ease-in, transform .3s ease-in;
+    }
 `
 const ContentDiv = styled.div`
     display: flex;
@@ -167,8 +185,9 @@ const ExitBtn = styled.button`
     top: 10px;
     right: 10px;
     border: none;
+    border-radius: 5px;
     color: var(--navy);
-    background: transparent;
+    background: rgba(245, 245, 245, .3);
     cursor: pointer;
     z-index: 10;
     &:hover {
