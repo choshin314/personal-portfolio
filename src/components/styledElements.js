@@ -34,13 +34,12 @@ export const Section = styled.section`
 export const SectionClippedBorder = styled.div`
     background: ${props => props.bgColor};
     height: 25px;
-    clip-path: polygon(100% -1px, 50% 100%, 0 -1px);
+    clip-path: polygon(100% -3px, 50% 100%, 0 -3px);
     margin-bottom: 3rem;
     @media(min-width: ${media.tablet}){
         height: 50px;
     }
 `
-
 
 export const Flex = styled.div`
     display: flex;

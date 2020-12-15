@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {PaddedSection, SectionTitle, media} from '../styledElements'
+import {PaddedSection, SectionTitle} from '../styledElements'
 import ContactForm from './contactForm'
 
 const ContactSection = () => (

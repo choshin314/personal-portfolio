@@ -3,7 +3,7 @@ import {graphql, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 import {CSSTransition} from 'react-transition-group'
 
-import {PaddedSection, SectionTitle, media} from '../styledElements'
+import {PaddedSection, SectionTitle} from '../styledElements'
 import ProjectCard from './projectCard'
 import ProjectModal from './projectModal'
 import {ModalContext} from '../../context/modalContext'

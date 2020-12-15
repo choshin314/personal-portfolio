@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useState} from 'react'
 import styled from 'styled-components'
-import {window, document} from 'browser-monads'
+import {window} from 'browser-monads'
 
 import Particles from './particles'
 import Navbar from './nav/navbar'
