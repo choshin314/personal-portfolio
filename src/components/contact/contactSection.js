@@ -4,8 +4,8 @@ import {PaddedSection, SectionTitle, media} from '../styledElements'
 import ContactForm from './contactForm'
 
 const ContactSection = () => (
-    <PaddedSection id="contact-section" bgColor="var(--light-navy)" clippedBgColor="var(--light-grey)">
-        <SectionTitle color="white">CONTACT ME</SectionTitle>
+    <PaddedSection id="contact-section" className="page-section" bgColor="var(--light-navy)" clippedBgColor="var(--light-grey)">
+        <SectionTitle color="white" id="contact-section-title" className="section-title">CONTACT ME</SectionTitle>
         <ContactForm />
     </PaddedSection>
 )

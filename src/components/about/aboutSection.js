@@ -27,8 +27,8 @@ const AboutSection = () => {
     `)
 
     return (
-        <PaddedSection id="about-section">
-            <SectionTitle>ABOUT ME</SectionTitle>
+        <PaddedSection id="about-section" >
+            <SectionTitle id="about-section-title" className="section-title">ABOUT ME</SectionTitle>
             <Flex>
                 <div className="personal-details">
                     <ImgFrame>

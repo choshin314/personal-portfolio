@@ -9,7 +9,7 @@ const Navbar = ({pinned}) => {
     return (
         <Nav id="navbar" className={pinned ? 'pinned' : ''}>
             <Menu>
-                <Link to="#home-section"><li>Home</li></Link>
+                <Link to="#home-section" className="active-nav-link"><li>Home</li></Link>
                 <Link to="#about-section"><li>About</li></Link>
                 <Link to="#projects-section"><li>Projects</li></Link>
                 <Link to="#contact-section"><li>Contact</li></Link>
@@ -57,6 +57,9 @@ const Menu = styled.ul`
         font-weight: 500;
         margin: 0 2rem;
         &:hover, &:focus {
+            color: var(--accent);
+        }
+        &.active-nav-link {
             color: var(--accent);
         }
     }

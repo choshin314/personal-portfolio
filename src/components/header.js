@@ -29,11 +29,11 @@ function Header() {
         return () => navObserver.unobserve(header);
     }, [])
     return (
-        <StyledHeader className="particle-wrapper" ref={headerRef} id="home-section">
+        <StyledHeader id="home-section" className="page-section particle-wrapper" ref={headerRef} >
             <Particles />
             <Wrapper>
               <Content>
-                <h1>Hello, I'm <span>Shin Cho</span></h1>
+                <h1 id="home-section-title" className="section-title">Hello, I'm <span>Shin Cho</span></h1>
                 <p>I build web apps and websites.</p>
               </Content>
             </Wrapper>

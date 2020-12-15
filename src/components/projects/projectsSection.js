@@ -47,8 +47,8 @@ const ProjectsSection = () => {
 
     return (
         <>
-        <PaddedSection id="projects-section" bgColor="var(--light-grey)" clippedBgColor="white">
-            <SectionTitle>PROJECTS</SectionTitle>
+        <PaddedSection id="projects-section" className="page-section" bgColor="var(--light-grey)" clippedBgColor="white">
+            <SectionTitle id="projects-section-title" className="section-title">PROJECTS</SectionTitle>
             <Flex>
                 {projects.map(project => <ProjectCard project={project} key={project.name}/>)}
             </Flex>
