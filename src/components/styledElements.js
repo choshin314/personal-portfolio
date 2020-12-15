@@ -9,8 +9,8 @@ export const media = {
     wide: '1800px'
 }
 
-export const PaddedSection = ({id, bgColor="white", clippedBgColor, children}) => (
-    <Section id={id} bgColor={bgColor} padding={clippedBgColor ? "0 0 3rem 0" : "3rem 0"}>
+export const PaddedSection = ({id, className, bgColor="white", clippedBgColor, children}) => (
+    <Section id={id} className={className} bgColor={bgColor} padding={clippedBgColor ? "0 0 3rem 0" : "3rem 0"}>
         {clippedBgColor && <SectionClippedBorder bgColor={clippedBgColor}></SectionClippedBorder>}
         <Wrapper>
             {children}
