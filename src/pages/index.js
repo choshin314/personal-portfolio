@@ -11,7 +11,7 @@ const IndexPage = ({data}) => {
   const { site: { siteMetadata } } = data;
   return (
     <Layout>
-      <Helmet title={siteMetadata.title}>
+      <Helmet title={siteMetadata.title} htmlAttributes={{lang: 'en'}}>
         <meta name="description" content={siteMetadata.description} />
       </Helmet>
       <AboutSection />
