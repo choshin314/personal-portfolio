@@ -26,18 +26,13 @@ const particlesParams = {
         value: "random"
       },
       shape: {
-        type: ["polygon", "image"],
+        type: ["polygon"],
         stroke: {
           width: 0,
           color: "random"
         },
         polygon: {
           sides: 5
-        },
-        image: {
-          src: tinyPic,
-          width: 100,
-          height: 100
         }
       },
       opacity: {
