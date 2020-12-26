@@ -8,7 +8,7 @@ import {faGithub} from '@fortawesome/free-brands-svg-icons'
 import {media} from '../styledElements'
 import {ModalContext} from '../../context/modalContext'
 
-const ProjectCard = ({project}) => {
+const ProjectCard = ({project, refCallback}) => {
     const [cardOpen, setCardOpen] = useState(false);
     const {setModalOpen, setCurrentProject} = useContext(ModalContext);
 
@@ -22,7 +22,7 @@ const ProjectCard = ({project}) => {
     }
 
     return (
-        <CardWrapper open={cardOpen} className={cardOpen ? 'open' : ''}>
+        <CardWrapper ref={refCallback} open={cardOpen} className={cardOpen ? 'open' : ''}>
             <Card onClick={toggleCardOpen} onMouseEnter={()=> setCardOpen(true)} onMouseLeave={() => setCardOpen(false)}>
                 <CardMain>
                     <ImgWrapper>
