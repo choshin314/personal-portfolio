@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import styled from 'styled-components'
 import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
 
 import {PaddedSection, SectionTitle, media} from '../styledElements'
+import {useScrollReveal} from '../../hooks/useScrollReveal'
 
 const AboutSection = () => {
     const data = useStaticQuery(graphql`
@@ -26,11 +27,22 @@ const AboutSection = () => {
         }
     `)
 
+    const personalDetailsRef = useRef(null);
+    const skillsRef = useRef(null);
+
+    const initObserver = useScrollReveal();
+
+    useEffect(() => {
+        if(personalDetailsRef.current && skillsRef.current) {
+            initObserver([personalDetailsRef.current, skillsRef.current]);
+        }
+    }, [])
+
     return (
         <PaddedSection id="about-section" >
             <SectionTitle id="about-section-title" className="section-title">ABOUT ME</SectionTitle>
             <Flex>
-                <div className="personal-details">
+                <div className="personal-details" ref={personalDetailsRef}>
                     <ImgFrame>
                         <Img fluid={data.contentfulAsset.fluid} alt="Shin Cho's mug"/>
                     </ImgFrame>
@@ -42,7 +54,7 @@ const AboutSection = () => {
                         I strive to build apps and websites not just with an emphasis on beautiful and responsive designs, but also on performance and functionality. 
                     </p>
                 </div>
-                <div className="skills">
+                <div className="skills" ref={skillsRef}>
                     <h3>Skills / Proficiencies</h3>
                     <ul>
                         {data.contentfulSkillSet.skills.map(skill => (

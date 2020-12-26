@@ -81,3 +81,14 @@ p {
 *::-webkit-scrollbar-thumb:hover {
     background: var(--light-navy);
 }
+
+/*-----Scroll Intersection Observer Reveal-----*/
+
+.hide-until-scroll {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.hide-until-scroll--revealed {
+    opacity: 1;
+}
