@@ -15,7 +15,7 @@ function Footer() {
             }
         }
     `)
-    const icons = [faGithub, faLinkedin, faInstagram]
+    const icons = [faInstagram, faLinkedin, faGithub]
     return (
         <StyledFooter>
             <ul>
