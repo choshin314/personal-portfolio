@@ -48,10 +48,10 @@ const AboutSection = () => {
                     </ImgFrame>
                     <h3>Hello there :)</h3>
                     <p>
-                        I'm Shin.  I am an attorney-turned-web developer with a passion for making things for the web.    
+                        I'm Shin, and I love making stuff for the web.   
                     </p>
                     <p>
-                        I strive to build apps and websites not just with an emphasis on beautiful and responsive designs, but also on performance and functionality. 
+                        I strive to build apps and websites with an emphasis on responsive design and cool functionality.  Check out some of my projects below!
                     </p>
                 </div>
                 <div className="skills" ref={skillsRef}>
