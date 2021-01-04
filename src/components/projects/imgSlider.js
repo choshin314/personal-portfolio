@@ -6,16 +6,40 @@ import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 
 const ImgSlider = ({images}) => {
     const [activeImg, setActiveImg] = useState(0);
+    const [swipeState, setSwipeState] = useState({ 
+        isSwiping: false, 
+        initPosX: null 
+    });
+
     function prevImg() {
         activeImg === 0 ? 
         setActiveImg(images.length - 1) : 
         setActiveImg(activeImg - 1);
     }
+
     function nextImg() {
         activeImg === images.length - 1 ? 
         setActiveImg(0) : 
         setActiveImg(activeImg + 1);
     }
+
+    function handleSwipeStart(e) {
+        let clientX = e.targetTouches ? e.targetTouches[0].clientX : e.clientX;
+        setSwipeState({ isSwiping: true, initPosX: clientX });
+    }
+
+    function handleSwipeMove(e) {
+        if (!swipeState.isSwiping) return;
+        e.preventDefault();
+        let currentPosX = e.targetTouches ? e.targetTouches[0].clientX : e.clientX;
+        let deltaPosX = Math.abs(currentPosX - swipeState.initPosX);
+        if (deltaPosX < 50) return;
+        currentPosX < swipeState.initPosX ?
+            nextImg() :
+            prevImg();
+        setSwipeState({ isSwiping: false, initPosX: null });
+    }
+
     const imgStyle = {
         position: 'absolute',
         left: 0,
@@ -24,7 +48,13 @@ const ImgSlider = ({images}) => {
         height: '100%'
     }
     return (
-        <ImgBox className="modal-img-box">
+        <ImgBox 
+            className="modal-img-box"
+            onTouchStart={handleSwipeStart}
+            onPointerDown={handleSwipeStart}
+            onTouchMove={handleSwipeMove}
+            onPointerMove={handleSwipeMove}
+        >
             {images.map((img, i) => <Img 
                 key={img.title} 
                 fluid={img.fluid} 
