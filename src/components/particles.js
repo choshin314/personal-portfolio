@@ -1,7 +1,6 @@
 import React from 'react'
 import ParticlesJS from 'react-particles-js'
-
-import tinyPic from '../images/shincho_profile_tiny.png'
+import MediaQuery from 'react-responsive'
 
 const particlesParams = {
     fpsLimit: 60,
@@ -111,6 +110,7 @@ const particlesParams = {
 }
 
 const Particles = () => (
+  <MediaQuery minDeviceWidth={768} >
     <ParticlesJS 
         params={particlesParams}
         height="100vh"
@@ -121,6 +121,7 @@ const Particles = () => (
           position: 'absolute'
         }}
     />
+  </MediaQuery>
 )
 
 export default Particles;

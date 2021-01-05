@@ -58,6 +58,7 @@ const Content = styled.div`
 const StyledHeader = styled.header`
     position: relative;
     height: 100vh;
+    background-color: #0a192f;
     #tsparticles {
         z-index: 1;
     }
