@@ -29,6 +29,7 @@ const ProjectCard = ({project, refCallback}) => {
                         <Img 
                             fluid={project.cardImage.fluid} 
                             alt={`screenshot of ${project.name} project`}
+                            imgStyle={{objectPosition: 'center top'}}
                         />
                     </ImgWrapper>
                     <CardMainContent>
@@ -150,6 +151,7 @@ const CardMainContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
     position: absolute;
     left: 0;
@@ -164,14 +166,17 @@ const CardMainContent = styled.div`
         border-radius: 10px;
         font-weight: 700;
         margin-bottom: 1rem;
+        max-width: 500px;
     }
     ${CardWrapper}.open & {
         opacity: 0;
     }
-    @media(min-width: ${media.tablet}) {
-        display: block;
-        width: 50%;
-        text-align: left;
+    @media(min-width: ${media.laptop}) {
+        max-width: 80%;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     } 
 `
 const CardTabContainer = styled.ul`

@@ -8,6 +8,7 @@ import ProjectCard from './projectCard'
 import ProjectModal from './projectModal'
 import {ModalContext} from '../../context/modalContext'
 import {useScrollReveal} from '../../hooks/useScrollReveal'
+import {media} from '../styledElements'
 
 const ProjectsSection = () => {
     const { contentfulProjectSet: { projects }} = useStaticQuery(graphql`
@@ -60,7 +61,7 @@ const ProjectsSection = () => {
         <>
         <PaddedSection id="projects-section" className="page-section" bgColor="var(--light-grey)" clippedBgColor="white">
             <SectionTitle id="projects-section-title" className="section-title">PROJECTS</SectionTitle>
-            <Flex>
+            <Grid hasOddChildren={projects.length % 2 !== 0 ? true : false}>
                 {projects.map(project => (
                     <ProjectCard 
                         project={project} 
@@ -68,7 +69,7 @@ const ProjectsSection = () => {
                         refCallback={element => projectCardRefs.current.push(element)}
                     />
                 ))}
-            </Flex>
+            </Grid>
         </PaddedSection>
         <CSSTransition
             in={modalOpen && currentProject}
@@ -84,7 +85,7 @@ const ProjectsSection = () => {
 
 export default ProjectsSection;
 
-const Flex = styled.div`
+const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -93,5 +94,11 @@ const Flex = styled.div`
         flex: 1 0 100%;
         text-align: center;
         font-weight: 700;
+    }
+    @media(min-width: ${media.laptop}) {
+        grid-template-columns: 1fr 1fr;
+        div:first-child {
+            grid-column: ${props => props.hasOddChildren ? 'span 2' : 'span 1'};
+        }
     }
 `
