@@ -112,12 +112,14 @@ const particlesParams = {
 const Particles = () => (
   <MediaQuery minDeviceWidth={768} >
     <ParticlesJS 
+        id="tsparticles"
+        className=""
         params={particlesParams}
         height="100vh"
+        width="100%"
         style={{
           margin: 0,
           zIndex: 0,
-          height: '100vh',
           position: 'absolute'
         }}
     />
