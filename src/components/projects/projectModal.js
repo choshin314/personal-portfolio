@@ -130,6 +130,12 @@ const ModalContainer = styled.div`
     }
 `
 const ContentDiv = styled.div`
+    h1 {
+        font-size: 1.25rem;
+    }
+    h2 {
+        font-size: 1.0rem;
+    }
     display: flex;
     flex-direction: column;
     border-top: 3px solid var(--navy);

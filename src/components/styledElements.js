@@ -21,7 +21,7 @@ export const PaddedSection = ({id, className, bgColor="white", clippedBgColor, c
 
 export const Wrapper = styled.div`
     width: 90%;
-    max-width: 1200px;
+    max-width: 800px;
     height: 100%;
     margin: 0 auto;
 `
