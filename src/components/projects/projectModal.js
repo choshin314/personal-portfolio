@@ -48,13 +48,13 @@ const ProjectModal = () => {
                         <li>
                             <a href={currentProject.repoUrl} target="blank">
                                 <FontAwesomeIcon icon={faGithub} className="fa-fw" />
-                                <span>{!currentProject.repoUrl2 ? "Github Repo" : "Github Repo - Frontend"}</span>
+                                <span>{!currentProject.repoUrl2 ? "Github Repo" : "Github Repo - Front End"}</span>
                             </a>
                         </li>
                         {currentProject.repoUrl2 && <li>
                             <a href={currentProject.repoUrl2} target="blank">
                                 <FontAwesomeIcon icon={faGithub} className="fa-fw" />
-                                <span>Github Repo - Backend</span>
+                                <span>Github Repo - Back End</span>
                             </a>
                         </li>}
                     </ul>
