@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 import {media} from '../styledElements'
+import NavLink from './navlink'
 
 const NavMobile = () => {
     const [navOpen, setNavOpen] = useState(false);
@@ -22,10 +23,10 @@ const NavMobile = () => {
             </NavButton>
             <MenuWrapper>
                 <Menu>
-                    <a href="#home-section" ><li>Home</li></a>
-                    <a href="#about-section" ><li>About</li></a>
-                    <a href="#projects-section" ><li>Projects</li></a>
-                    <a href="#contact-section" ><li>Contact</li></a>
+                    <NavLink to="#home-section" text="Home" />
+                    <NavLink to="#about-section" text="About" />
+                    <NavLink to="#projects-section" text="Projects" />
+                    <NavLink to="#contact-section" text="Contact"/>
                 </Menu>
             </MenuWrapper>
         </Nav>
