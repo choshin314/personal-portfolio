@@ -7,8 +7,8 @@ import {PaddedSection, SectionTitle} from '../styledElements'
 import ProjectCard from './projectCard'
 import ProjectModal from './projectModal'
 import {ModalContext} from '../../context/modalContext'
-import {useScrollReveal} from '../../hooks/useScrollReveal'
 import {media} from '../styledElements'
+import { revealOnScroll } from '../../helpers/scrollReveal'
 
 const ProjectsSection = () => {
     const { contentfulProjectSet: { projects }} = useStaticQuery(graphql`
@@ -49,11 +49,10 @@ const ProjectsSection = () => {
     const {currentProject, modalOpen} = useContext(ModalContext);
 
     const projectCardRefs = useRef([]);
-    const initObserver = useScrollReveal();
 
     useEffect(() => {
         if (projectCardRefs.current.length > 0) {
-            initObserver(projectCardRefs.current);
+            revealOnScroll(projectCardRefs.current);
         }
     }, [])
 

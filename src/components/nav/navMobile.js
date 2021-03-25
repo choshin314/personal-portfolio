@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Link} from 'gatsby'
 
 import {media} from '../styledElements'
 
@@ -23,10 +22,10 @@ const NavMobile = () => {
             </NavButton>
             <MenuWrapper>
                 <Menu>
-                    <Link to="#home-section" ><li>Home</li></Link>
-                    <Link to="#about-section" ><li>About</li></Link>
-                    <Link to="#projects-section" ><li>Projects</li></Link>
-                    <Link to="#contact-section" ><li>Contact</li></Link>
+                    <a href="#home-section" ><li>Home</li></a>
+                    <a href="#about-section" ><li>About</li></a>
+                    <a href="#projects-section" ><li>Projects</li></a>
+                    <a href="#contact-section" ><li>Contact</li></a>
                 </Menu>
             </MenuWrapper>
         </Nav>

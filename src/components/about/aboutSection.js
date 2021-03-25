@@ -4,7 +4,7 @@ import {useStaticQuery, graphql} from 'gatsby'
 import Img from 'gatsby-image'
 
 import {PaddedSection, SectionTitle, media} from '../styledElements'
-import {useScrollReveal} from '../../hooks/useScrollReveal'
+import { revealOnScroll } from '../../helpers/scrollReveal'
 
 const AboutSection = () => {
     const data = useStaticQuery(graphql`
@@ -30,11 +30,9 @@ const AboutSection = () => {
     const personalDetailsRef = useRef(null);
     const skillsRef = useRef(null);
 
-    const initObserver = useScrollReveal();
-
     useEffect(() => {
         if(personalDetailsRef.current && skillsRef.current) {
-            initObserver([personalDetailsRef.current, skillsRef.current]);
+            revealOnScroll([personalDetailsRef.current, skillsRef.current]);
         }
     }, [])
 
